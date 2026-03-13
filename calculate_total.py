@@ -7,7 +7,9 @@ def calculate_total(prices, *discounts, **options):
             if (list(options)[i]) == "tax":
                 summa *= (1 + (options["tax"])/100)
             if (list(options)[i]) == "round_to":
-                summa = int(summa) + float(str(summa - int(summa))[:(options["round_to"])+2])
-            else:
-                summa = int(summa) + float(str(summa - int(summa))[:4])
+                if options["round_to"] == None:
+                    summa = int(summa) + float(str(summa - int(summa))[:4])
+                else:
+                    summa = int(summa) + float(str(summa - int(summa))[:(options["round_to"])+2])
+
     return summa
